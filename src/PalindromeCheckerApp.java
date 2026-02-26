@@ -1,87 +1,47 @@
+
 /**
- * ============================================================================
- * MAIN CLASS - UseCase12PalindromeCheckerApp
- * ============================================================================
- * * Use Case 12: Strategy Pattern for Palindrome Algorithms
- * * Description:
- * This class demonstrates how different palindrome
- * validation algorithms can be selected dynamically
- * at runtime using the Strategy Design Pattern.
- * * At this stage, the application:
- * - Defines a common PalindromeStrategy interface
- * - Implements a concrete Stack based strategy
- * - Injects the strategy at runtime
- * - Executes the selected algorithm
- * * No performance comparison is done in this use case.
- * The focus is purely on algorithm interchangeability.
- * * The goal is to teach extensible algorithm design.
- * * @dhiraj Developer
- * @version 12.0
+ * ============================================
+ * MAIN CLASS - UseCase1PalindromeApp
+ * ============================================
+ *
+ * Use Case 1: Application Entry & Welcome Message
+ *
+ * Description:
+ * This class represents the entry point of the
+ * Palindrome Checker Management System.
+ *
+ * At this stage, the application:
+ * - Starts execution from the main() method
+ * - Displays a welcome message
+ * - Shows application version
+ *
+ * No palindrome logic is implemented yet.
+ * The goal is to establish a clear startup flow.
+ *
+ * @dhiraj
+ * @version 1.0
  */
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
-        String testString1 = "racecar";
-        String testString2 = "hello";
-
-        // Select the strategy dynamically at runtime
-        PalindromeStrategy strategy = new StackStrategy();
-
-        // Execute the selected algorithm
-        System.out.println("Is '" + testString1 + "' a palindrome? " + strategy.check(testString1));
-        System.out.println("Is '" + testString2 + "' a palindrome? " + strategy.check(testString2));
-    }
-}
-
-/**
- * ============================================================================
- * INTERFACE - PalindromeStrategy
- * ============================================================================
- * * This interface defines a contract for all
- * palindrome checking algorithms.
- * * Any new algorithm must implement this interface
- * and provide its own validation logic.
- */
-interface PalindromeStrategy {
-    boolean check(String input);
-}
-
-/**
- * ============================================================================
- * CLASS - StackStrategy
- * ============================================================================
- * * This class provides a Stack based implementation
- * of the PalindromeStrategy interface.
- * * It uses LIFO behavior to reverse characters
- * and compare them with the original sequence.
- */
-class StackStrategy implements PalindromeStrategy {
 
     /**
-     * Implements palindrome validation using Stack.
-     * * @param input String to validate
-     * @return true if palindrome, false otherwise
+     * Application entry point
+     * This is the first method executed by the JVM
      */
-    @Override
-    public boolean check(String input) {
-        if (input == null) {
-            return false;
+    public static void main(String[] args) {
+
+        System.out.println("Hello and welcome!");
+        System.out.println("Application Version: 1.0");
+
+        String input = "MADAM";
+
+        String reversed = new StringBuilder(input)
+                .reverse()
+                .toString();
+
+        if (input.equals(reversed)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not a Palindrome");
         }
-
-        // Create a stack to store characters.
-        java.util.Stack<Character> stack = new java.util.Stack<>();
-
-        // Push each character of the input string onto the stack.
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        // Compare characters by popping from the stack.
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
