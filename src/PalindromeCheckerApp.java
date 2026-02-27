@@ -23,7 +23,7 @@ import java.util.Scanner;
  * @author Developer
  * @version 4.0
  */
-public class UseCase4PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     /**
      * Application entry point for UC4.
