@@ -1,7 +1,8 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
 
-public class UseCase8PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -10,16 +11,16 @@ public class UseCase8PalindromeCheckerApp {
         String input = scanner.nextLine();
 
         String processed = input.replaceAll("\\s+", "").toLowerCase();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
         for (char ch : processed.toCharArray()) {
-            stack.push(ch);
+            deque.addLast(ch);
         }
 
         boolean isPalindrome = true;
 
-        for (char ch : processed.toCharArray()) {
-            if (ch != stack.pop()) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
