@@ -1,7 +1,19 @@
-import java.util.Stack;
 import java.util.Scanner;
 
-public class UseCase8PalindromeCheckerApp {
+public class PalindromeCheckerApp {
+
+    public static boolean isPalindrome(String str, int left, int right) {
+
+        if (left >= right) {
+            return true;
+        }
+
+        if (str.charAt(left) != str.charAt(right)) {
+            return false;
+        }
+
+        return isPalindrome(str, left + 1, right - 1);
+    }
 
     public static void main(String[] args) {
 
@@ -10,22 +22,10 @@ public class UseCase8PalindromeCheckerApp {
         String input = scanner.nextLine();
 
         String processed = input.replaceAll("\\s+", "").toLowerCase();
-        Stack<Character> stack = new Stack<>();
 
-        for (char ch : processed.toCharArray()) {
-            stack.push(ch);
-        }
+        boolean result = isPalindrome(processed, 0, processed.length() - 1);
 
-        boolean isPalindrome = true;
-
-        for (char ch : processed.toCharArray()) {
-            if (ch != stack.pop()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
+        if (result) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not a Palindrome");
